@@ -53,7 +53,12 @@ class UserController extends Controller
         if (!Auth::attempt($loginData))
             return response(['message' => 'Invalid Credentials'], 401);
 
-        $user = Auth::user();
+        $user = User::where('email', $request->email)->first();
+        if($user->email_verified_at == null) {
+            return response(['message'=>'Please verify your email'], 401);
+        } else {
+            return response(['message'=>'Authenticed','user'=>$user]);
+        }
 
         return response([
             'message' => 'Authenticated',

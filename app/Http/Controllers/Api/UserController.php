@@ -59,11 +59,6 @@ class UserController extends Controller
         } else {
             return response(['message'=>'Authenticed','user'=>$user]);
         }
-
-        return response([
-            'message' => 'Authenticated',
-            'user' => $user,
-        ]);
     }
 
     public function show($id)
